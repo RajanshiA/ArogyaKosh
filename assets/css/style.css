@@ -12,3 +12,26 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+.background_image {
+    background-image: url('../images/medical-banner-with-doctor-working-laptop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150vh;
+    background-position: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    opacity: 0.8;
+    position: relative;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    opacity: 0.95;
+    background-color: #ffffff;
+}

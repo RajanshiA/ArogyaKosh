@@ -8,7 +8,7 @@
 
     <style>
         .background_image {
-            background-image: url('medical-banner-with-doctor-working-laptop.jpg');
+            background-image: url('assets/images/medical-banner-with-doctor-working-laptop.jpg'); /* ✅ Fixed */
             background-size: cover;
             background-repeat: no-repeat;
             height: 150vh;
@@ -21,81 +21,75 @@
             margin-top: 10px;
             margin-bottom: 20px;
             opacity: 0.8;
-            position: relative; /* Position the container relatively */
-        }
-
-        .container {
-            max-width: 1200px; /* Adjust maximum width */
-            margin: 0 auto; /* Center the container horizontally */
-        }
-
-        .text-center {
-            text-align: center; /* Center align text */
+            position: relative;
         }
 
         .form-container {
-            position: absolute; /* Position the form absolutely */
-            top: 50%; /* Align the form to the center vertically */
-            left: 50%; /* Align the form to the center horizontally */
-            transform: translate(-50%, -50%); /* Center the form */
-            padding: 20px; /* Add padding to the form */
-            border-radius: 10px; /* Rounded corners */
-            opacity: 0.9; /* Adjust the opacity of the form background */
-            background-color: #ffffff; /* Background color for the form */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0.9;
+            background-color: #ffffff;
         }
     </style>
-    
-
 </head>
 <body>
 
-    <iframe src="header.php" style="height:65; width:100%;"></iframe>
+    <!-- ✅ Use include instead of iframe -->
+    <?php include 'header.php'; ?>
 
-    <div class=" background_image">
+    <div class="background_image">
         
-        <form action="login.php" method="post" class="form-container border-gray-300 p-3 border-2 w-1/2">
+        <form action="includes/login.inc.php" method="POST" class="form-container border-gray-300 p-3 border-2 w-1/2">
 
             <h1 class="text-3xl font-bold text-center">Sign In</h1>
-
             <hr class="my-5">
     
-                <div class="text-left mb-5">
-    
-                    <div class="flex justify-between items-center mb-2">
-                        <label for="username" class="mr-2 font-semibold">User/Institute ID :</label>
-                        <input type="text" id="username" placeholder="Enter your ID" class="border-2 border-gray-300 p-2 rounded-lg mr-14">
-                    </div>
-    
-                    <div class="flex justify-between items-center mb-2">
-                        <label for="password" class="mr-2 font-semibold">Password :</label>
-                        <input type="password" id="password" placeholder="Enter your password" class="border-2 border-gray-300 p-2 rounded-lg mr-14">
-                    </div>
-    
-                    <div class="flex justify-between items-center mb-2">
-                        <label for="user-type" class="mr-2 font-semibold">User Type :</label>
-                        <select class="border-2 border-gray-300 px-14 py-2 rounded-lg mr-16" id="user-type" >
-                            <option value="patient">Patient</option>
-                            <option value="doctor">Institute</option>
-                            <option value="admin">Doctor</option>
-                            <option value="lab">Lab</option>
+            <div class="text-left mb-5">
 
-                        </select>
-                    </div>
-                    
-                    <input type="submit" value="Sign In" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 block w-full">
-
-                    <p class="text-gray-500 text-center mt-3">Forgot password? <a href="forgot-password.html" class="text-blue-500">Reset password</a></p>
-
-                    <input type="hidden" name="csrf_token" value="a2f3b4e5c6d7e8f9">
-                    <input type="hidden" name="csrf_token" value="a2f3b4e5c6d7e8f9">     </div>
-
-                    <p class="text-gray-500 text-center mt-3">Don't have an account? <a href="landing.php" class="text-blue-500">Sign up</a></p>
+                <!-- Username / Institute ID -->
+                <div class="flex justify-between items-center mb-2">
+                    <label for="username" class="mr-2 font-semibold">User/Institute ID :</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your ID" class="border-2 border-gray-300 p-2 rounded-lg mr-14" required>
                 </div>
+
+                <!-- Password -->
+                <div class="flex justify-between items-center mb-2">
+                    <label for="password" class="mr-2 font-semibold">Password :</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" class="border-2 border-gray-300 p-2 rounded-lg mr-14" required>
+                </div>
+
+                <!-- User Type -->
+                <div class="flex justify-between items-center mb-2">
+                    <label for="user-type" class="mr-2 font-semibold">User Type :</label>
+                    <select class="border-2 border-gray-300 px-14 py-2 rounded-lg mr-16" id="user-type" name="usertype" required>
+                        <option value="patient">Patient</option>
+                        <option value="institute">Institute</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="lab">Lab</option>
+                    </select>
+                </div>
+                
+                <!-- Submit button -->
+                <input type="submit" value="Sign In" name="submit" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 block w-full">
+
+                <!-- Forgot password -->
+                <p class="text-gray-500 text-center mt-3">Forgot password? <a href="forgot-password.php" class="text-blue-500">Reset password</a></p>
+
+                <!-- CSRF token -->
+                <input type="hidden" name="csrf_token" value="<?php echo bin2hex(random_bytes(32)); ?>">
+
+                <!-- Sign up link -->
+                <p class="text-gray-500 text-center mt-3">Don't have an account? <a href="landing.php" class="text-blue-500">Sign up</a></p>
+            </div>
         </form>
-        
     </div>
     
-    <iframe src="footer.php" style="height:40%; width:100%;"></iframe>
-    
+    <!-- ✅ Use include instead of iframe -->
+    <?php include 'footer.php'; ?>
+
 </body>
 </html>
